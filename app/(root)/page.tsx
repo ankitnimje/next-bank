@@ -1,15 +1,20 @@
 import HeaderBox from "@/components/HeaderBox";
 import RightSidebar from "@/components/RightSidebar";
 import TotalBalanceBox from "@/components/TotalBalanceBox";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React from "react";
 
-const Home = () => {
+const Home = async () => {
+
+  const loggedInUser = await getLoggedInUser()
+
   const loggedInUserMockData = {
     $id: "123",
     email: "el@pacino.com",
     userId: "12345",
     dwollaCustomerUrl: "some url",
     dwollaCustomerId: "some id",
+    name: 'Al pacino',
     firstName: "AL",
     lastName: "Pacino",
     address1: "Broadway st",
@@ -27,7 +32,7 @@ const Home = () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedInUserMockData?.firstName || "Guest"}
+            user={loggedInUser?.name || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
           />
 
@@ -40,7 +45,7 @@ const Home = () => {
         RECENT TRANSACTIONS
       </div>
       <RightSidebar
-        user={loggedInUserMockData}
+        user={loggedInUser}
         transactions={[]}
         banks={[{ currentBalance: 123.5 }, { currentBalance: 500 }]}
       />
