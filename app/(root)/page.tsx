@@ -5,25 +5,7 @@ import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React from "react";
 
 const Home = async () => {
-
-  const loggedInUser = await getLoggedInUser()
-
-  const loggedInUserMockData = {
-    $id: "123",
-    email: "el@pacino.com",
-    userId: "12345",
-    dwollaCustomerUrl: "some url",
-    dwollaCustomerId: "some id",
-    name: 'Al pacino',
-    firstName: "AL",
-    lastName: "Pacino",
-    address1: "Broadway st",
-    city: "LA",
-    state: "CA",
-    postalCode: "66666",
-    dateOfBirth: "12/10/1299",
-    ssn: "123-12301",
-  };
+  const loggedInUser = await getLoggedInUser();
 
   return (
     <section className="home">
@@ -44,11 +26,7 @@ const Home = async () => {
         </header>
         RECENT TRANSACTIONS
       </div>
-      <RightSidebar
-        user={loggedInUser}
-        transactions={[]}
-        banks={[{ currentBalance: 123.5 }, { currentBalance: 500 }]}
-      />
+      <RightSidebar user={loggedInUser} transactions={[]} banks={[]} />
     </section>
   );
 };
