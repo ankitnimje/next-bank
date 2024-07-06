@@ -18,7 +18,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  
+
 
   const formSchema = authFormSchema(type);
 
@@ -42,13 +42,15 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
       }
 
       if (type === "sign-in") {
-        // const response = await signIn({
-        //   email: data.email,
-        //   password: data.password,
-        // });
-        // if (response) {
-        //   router.push("/");
-        // }
+        const response = await signIn({
+          email: data.email,
+          password: data.password,
+        });
+
+        console.log({response})
+        if (response) {
+          router.push("/");
+        }
       }
     } catch (error) {
       console.log({ error });
