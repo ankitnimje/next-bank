@@ -6,7 +6,10 @@ import {
   usePlaidLink,
 } from "react-plaid-link";
 import { useRouter } from "next/navigation";
-import { createLinkToken } from "@/lib/actions/user.actions";
+import {
+  createLinkToken,
+  exchangePublicToken,
+} from "@/lib/actions/user.actions";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
@@ -24,10 +27,10 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {
-      //   await exchanhgePublicToken({
-      //     publicToken: public_token,
-      //     user,
-      //   });
+      await exchangePublicToken({
+        publicToken: public_token,
+        user,
+      });
 
       router.push("/");
     },
@@ -41,20 +44,22 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   const { open, ready } = usePlaidLink(config);
 
+  console.log({ open, ready });
+
   return (
     <>
       {variant === "primary" ? (
         <Button
-          onClick={() => open}
+          onClick={() => open()}
           disabled={!ready}
           className="plaidlink-primary"
         >
-          Connect bank
+          Connect bank1
         </Button>
       ) : variant === "ghost" ? (
-        <Button>Connect bank</Button>
+        <Button>Connect bank2</Button>
       ) : (
-        <Button>Connect bank</Button>
+        <Button>Connect bank3</Button>
       )}
     </>
   );

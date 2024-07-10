@@ -7,7 +7,9 @@ import * as Sentry from "@sentry/nextjs";
 Sentry.init({
   dsn: "https://88e3763f8e6094ce5f5b35bbb16c0961@o4507568822550528.ingest.us.sentry.io/4507568827793408",
 
-  integrations: [Sentry.replayIntegration()],
+  integrations: [
+    // Sentry.replayIntegration()
+  ],
 
   // Session replay
   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
